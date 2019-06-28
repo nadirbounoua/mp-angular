@@ -53,24 +53,24 @@ Thumbs.db
 /app/**/*.js.map
 
 # dependencies
-/node_modules
-/bower_components
+frontend/node_modules
+frontend/bower_components
 
 # IDEs and editors
 /.idea
 
 # misc
-/.sass-cache
-/connect.lock
-/coverage/*
-/libpeerconnection.log
-npm-debug.log
-testem.log
-/typings
+/frontend/.sass-cache
+/frontend/connect.lock
+/frontend/coverage/*
+/frontend/libpeerconnection.log
+/frontend/npm-debug.log
+/frontend/testem.log
+/frontend/typings
 
 # e2e
-/e2e/*.js
-/e2e/*.map
+/frontend/e2e/*.js
+/frontend/e2e/*.map
 
 #System Files
 .DS_Store
