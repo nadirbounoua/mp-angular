@@ -1,4 +1,6 @@
 import {  Component, OnInit, Inject, Renderer, ElementRef, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -9,31 +11,34 @@ import { ApiService } from '../api.service';
 
 export class EditgameComponent implements OnInit, OnDestroy {
 
-  rows = [];
-
-  constructor( private element : ElementRef, private apiService : ApiService) { 
+  games = [];
+  game;
+  constructor(
+    private element : ElementRef,
+    private apiService : ApiService,
+    private route: ActivatedRoute,
+    private router: Router
+    ) { 
        this.fetch((data) => {
-      this.rows = data;
-      console.log(this.rows)
+      this.games = data;
+      this.game = this.games[this.route.snapshot.paramMap.get('id')-1];
+      console.log(this.game);
         });
    }
 
   ngOnInit() {
 
-      let navbar = document.getElementsByTagName('app-navbar')[0].children[0];
-      navbar.classList.remove('navbar-transparent');
   }
 
 	ngOnDestroy(){
-		let navbar = document.getElementsByTagName('app-navbar')[0].children[0];
 	}
 
   fetch(cb) {
-      let magazines;
-        this.apiService.getUsers()
+      let games;
+        this.apiService.getGames()
                        .subscribe((value) =>{
-                       magazines = value;
-                       cb(magazines);
+                       games = value;
+                       cb(games);
                      });
   }
 

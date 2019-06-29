@@ -13,13 +13,13 @@ import { EditgameComponent } from './editgame/editgame.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'index', pathMatch: 'full' },
-    { path: 'index',                component: ComponentsComponent },
+    { path: 'index',                component: GamesComponent },
     { path: 'nucleoicons',          component: NucleoiconsComponent },
     { path: 'examples/landing',     component: LandingComponent },
     { path: 'examples/login',       component: LoginComponent },
     { path: 'examples/profile',     component: ProfileComponent },
     { path: 'games',                component: GamesComponent },
-    { path: 'edit',                 component: EditgameComponent }
+    { path: 'edit/:id',             component: EditgameComponent }
 ];
 
 @NgModule({
