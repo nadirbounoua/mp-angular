@@ -21,6 +21,12 @@ export class ApiService {
     return this.http.get(url);
   }
 
+  getUsersCount (){
+    const url = this.CONFIG.baseURL + '/user/count';
+    
+    return this.http.get(url);
+  }
+
   createUser (body: any){
     const url = this.CONFIG.baseURL + '/user/';
     return this.http.post(url,body);
@@ -46,6 +52,12 @@ export class ApiService {
 
   getGames (){
     const url = this.CONFIG.baseURL + '/game';
+    
+    return this.http.get(url);
+  }
+
+  getGamesCount (){
+    const url = this.CONFIG.baseURL + '/game/count';
     
     return this.http.get(url);
   }
