@@ -29,7 +29,7 @@ export class GamesComponent implements OnInit {
 
   fetch(cb) {
       let games;
-        this.apiService.getUsers()
+        this.apiService.getGames()
                        .subscribe((value) =>{
                        games = value;
                        cb(games);

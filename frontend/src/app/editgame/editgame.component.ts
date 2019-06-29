@@ -1,6 +1,9 @@
 import {  Component, OnInit, Inject, Renderer, ElementRef, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import { ApiService } from '../api.service';
 import { FormBuilder, FormGroup, FormControl,Validators,ValidationErrors} from '@angular/forms';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-editgame',
@@ -9,51 +12,63 @@ import { FormBuilder, FormGroup, FormControl,Validators,ValidationErrors} from '
 })
 
 export class EditgameComponent implements OnInit, OnDestroy {
-  id: number;
-  rows = [];
-  checkoutForm;
+  checkoutForm : FormGroup;
+  game;
+  constructor(
+    private element : ElementRef,
+    private apiService : ApiService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private formBuilder: FormBuilder
+    ) {
+      this.checkoutForm = this.formBuilder.group({
+        status: ['' 
+              ],
+        platform: [''
+      ],
+        title: new FormControl(''),
+  
+        
+      })
+      this.fetch( async (data) => { 
+        this.game = data;
+        this.checkoutForm.controls['title'].setValue(this.game.title)
+      })
+      
 
-  constructor( private element : ElementRef, private apiService : ApiService, private formBuilder: FormBuilder) { 
-       /*this.fetch((data) => {
-      this.rows = data;
-      console.log(this.rows)
-        });*/
-
-        this.checkoutForm =  this.formBuilder.group({
-          status: ['' 
-                ],
-          platform: [''
-        ],
-          title: new FormControl(''),
-    
-          
-        });  
+      
    }
 
   ngOnInit() {
-
-      let navbar = document.getElementsByTagName('app-navbar')[0].children[0];
-      navbar.classList.remove('navbar-transparent');
   }
 
 	ngOnDestroy(){
-		let navbar = document.getElementsByTagName('app-navbar')[0].children[0];
 	}
 
-  fetch(body,cb) {
-      let magazines;
-        this.apiService.updateGame(1,body)
+  async update(body,cb) {
+      let games;
+      await this.apiService.updateGame(parseInt(this.route.snapshot.paramMap.get('id')),body)
                        .subscribe((value) =>{
-                       magazines = value;
-                       cb(magazines);
+                       games = value;
+                       cb(games);
                      });
+  }
+
+  async fetch(cb) {
+    let games;
+    await this.apiService.getOneGame(parseInt(this.route.snapshot.paramMap.get('id')))
+                     .subscribe((value) =>{
+                       console.log(value)
+                     games = value[0];
+                     cb(games);
+                   });
   }
 
   onSubmit(customerData) {
     // Process checkout data here
     console.warn('Your order has been submitted', customerData);
 
-    this.fetch(customerData,(data) => console.log(data))
+    this.update(customerData,(data) => console.log(data))
     this.checkoutForm.reset();
   }
 
