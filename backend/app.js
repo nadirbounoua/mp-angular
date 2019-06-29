@@ -103,7 +103,7 @@ app.put('/game/:id', (req, res) => {
             Game.updateOne(
                 {'game_id' : game.game_id},
                 {'game_id' : (req.body.game_id == undefined || null || '') ? game.game_id : req.body.game_id,
-                 'tite' : (req.body.title == undefined || null || '') ? game.title : req.body.title,
+                 'title' : (req.body.title == undefined || null || '') ? game.title : req.body.title,
                  'platform' : (req.body.platform == undefined || null || '') ? game.platform : req.body.platform,
                  'status' : (req.body.status == undefined || null || '') ? game.status : req.body.status}
                 ).then((game) => res.json(game)))
