@@ -8,10 +8,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/user', (req, res) => {
-    var users = [];
     User.find()
-    .then ((personnes) => users = personnes)
-    .then(() =>res.json(users));
+    .then ((personnes) => res.json(personnes))
+
+})
+
+app.get('/user/count', (req, res) => {
+    User.find()
+    .then ((personnes) => res.json({"count" : personnes.length}))
 })
 
 app.post('/user', (req, res) => {
@@ -67,6 +71,13 @@ app.get('/game', (req, res) => {
     .then ((games) =>
         res.json(games))
     
+
+})
+
+app.get('/game/count', (req, res) => {
+
+    Game.find()
+    .then ((games) => res.json({"count" : games.length}))
 
 })
 
