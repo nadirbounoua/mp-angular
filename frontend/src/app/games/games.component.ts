@@ -9,6 +9,7 @@ import { ApiService } from '../api.service';
 })
 export class GamesComponent implements OnInit {
 
+  title = "My Games";
   games = [];
 
   constructor(private apiService : ApiService) {

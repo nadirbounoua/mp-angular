@@ -10,16 +10,20 @@ import { ProfileComponent } from './examples/profile/profile.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 import { GamesComponent } from './games/games.component';
 import { EditgameComponent } from './editgame/editgame.component';
+import { AddgameComponent } from './addgame/addgame.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'index', pathMatch: 'full' },
     { path: 'index',                component: GamesComponent },
     { path: 'nucleoicons',          component: NucleoiconsComponent },
     { path: 'examples/landing',     component: LandingComponent },
-    { path: 'examples/login',       component: LoginComponent },
+    { path: 'login',                component: LoginComponent },
     { path: 'examples/profile',     component: ProfileComponent },
     { path: 'games',                component: GamesComponent },
-    { path: 'edit/:id',             component: EditgameComponent }
+    { path: 'edit/:id',             component: EditgameComponent },
+    { path: 'add',                  component: AddgameComponent },
+    { path: 'analytics',            component: AnalyticsComponent }
 ];
 
 @NgModule({

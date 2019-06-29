@@ -13,6 +13,7 @@ export class EditgameComponent implements OnInit, OnDestroy {
 
   games = [];
   game;
+  i = 0;
   constructor(
     private element : ElementRef,
     private apiService : ApiService,
@@ -21,7 +22,8 @@ export class EditgameComponent implements OnInit, OnDestroy {
     ) { 
        this.fetch((data) => {
       this.games = data;
-      this.game = this.games[this.route.snapshot.paramMap.get('id')-1];
+      this.i = parseInt(this.route.snapshot.paramMap.get('id'))-1;
+      this.game = this.games[this.i];
       console.log(this.game);
         });
    }

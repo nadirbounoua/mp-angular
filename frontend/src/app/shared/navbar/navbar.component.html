@@ -29,19 +29,19 @@
         <div class="collapse navbar-collapse" data-nav-image="assets/img/blurred-image-1.jpg" data-color="orange">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                  <a class="nav-link" href="https://www.creative-tim.com/product/now-ui-kit-angular" target="_blank">
+                  <a class="nav-link" [routerLink]="['/games']">
                       <i class="now-ui-icons design_bullet-list-67"></i>
                       <p>All Games</p>
                   </a>
               </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://creativetimofficial.github.io/now-ui-kit-angular/documentation/tutorial" target="_blank">
+                    <a class="nav-link" [routerLink]="['/analytics']">
                       <i class="now-ui-icons business_chart-pie-36"></i>
                       <p>Analytics</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn btn-neutral" href="https://www.creative-tim.com/product/now-ui-kit-pro-angular" target="_blank">
+                    <a class="nav-link btn btn-neutral" [routerLink]="['/index']">
                         <i class="now-ui-icons arrows-1_share-66"></i>
                         <p>Logout</p>
                     </a>

@@ -12,13 +12,19 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GamesComponent } from './games/games.component';
 import { EditgameComponent } from './editgame/editgame.component';
+import { AddgameComponent } from './addgame/addgame.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavbarComponent,
         GamesComponent,
-        EditgameComponent
+        EditgameComponent,
+        AddgameComponent,
+        AnalyticsComponent,
+        FooterComponent
 
     ],
     imports: [
