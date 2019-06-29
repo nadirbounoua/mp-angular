@@ -13,6 +13,23 @@ app.get('/user', (req, res) => {
 
 })
 
+app.post('/login', (req, res) => {
+    var login = req.body.login;
+    var password = req.body.password;
+
+    User.findOne({"login" : login})
+        .then((user,err) => {
+            if (err == null) {
+                if (user.password == password) res.sendStatus(200)
+                else res.sendStatus(500);
+            }
+            else {
+                res.sendStatus(500)
+            }
+        }).catch((err) => res.sendStatus(404))
+
+})
+
 app.get('/user/count', (req, res) => {
     User.find()
     .then ((personnes) => res.json({"count" : personnes.length}))
@@ -58,7 +75,7 @@ app.put('/user/:login', (req, res) => {
 app.delete('/user/:login', (req, res) => {
 
     User.deleteOne({'login' : req.params.login})
-        .then((user,err) => err == null ? res.sendStatus(200):
+        .then((user,err) => err == null ? res.json({"response":"OK"}) :
         res.sendStatus(500)
 
         );
@@ -115,7 +132,7 @@ app.put('/game/:id', (req, res) => {
 app.delete('/game/:id', (req, res) => {
 
     Game.deleteOne({'game_id' : req.params.id})
-        .then((game,err) => err == null ? res.sendStatus(200):
+        .then((game,err) => err == null ? res.json({"response":"OK"}):
         res.sendStatus(500)
 
         );
