@@ -1,4 +1,5 @@
 import {  Component, OnInit, Inject, Renderer, ElementRef, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 
 
@@ -12,7 +13,7 @@ export class GamesComponent implements OnInit {
   title = "My Games";
   games = [];
 
-  constructor(private apiService : ApiService) {
+  constructor(private apiService : ApiService, private router: Router,) {
       this.fetch((data) => {
       this.games = data;
       console.log(this.games)
@@ -37,4 +38,15 @@ export class GamesComponent implements OnInit {
                      });
   }
 
+  async delete(id) {
+    await this.apiService.deleteGame(parseInt(id))
+                     .subscribe((value) =>{
+                       console.log(value)
+                     this.router.navigate(['/games']);
+                   });
+  }
+
+  deleteGame(id) {    
+    this.delete(parseInt(id))
+  }
 }
