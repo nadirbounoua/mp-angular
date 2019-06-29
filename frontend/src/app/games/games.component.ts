@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {  Component, OnInit, Inject, Renderer, ElementRef, OnDestroy } from '@angular/core';
+import { ApiService } from '../api.service';
+
 
 @Component({
   selector: 'app-games',
@@ -6,11 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit {
-  data : Date = new Date();
-  focus;
-  focus1;
 
-  constructor() { }
+  games = [];
+
+  constructor(private apiService : ApiService) {
+      this.fetch((data) => {
+      this.games = data;
+      console.log(this.games)
+      });    
+  }
 
   ngOnInit() {
       let navbar = document.getElementsByTagName('app-navbar')[0].children[0];
@@ -20,5 +26,14 @@ export class GamesComponent implements OnInit {
 	ngOnDestroy(){
 		let navbar = document.getElementsByTagName('app-navbar')[0].children[0];
 	}
+
+  fetch(cb) {
+      let games;
+        this.apiService.getUsers()
+                       .subscribe((value) =>{
+                       games = value;
+                       cb(games);
+                     });
+  }
 
 }
