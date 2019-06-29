@@ -10,11 +10,16 @@ import { ExamplesModule } from './examples/examples.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GamesComponent } from './games/games.component';
+import { EditgameComponent } from './editgame/editgame.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        NavbarComponent
+        NavbarComponent,
+        GamesComponent,
+        EditgameComponent
+
     ],
     imports: [
         BrowserAnimationsModule,
