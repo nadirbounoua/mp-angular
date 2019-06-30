@@ -20,7 +20,7 @@ app.post('/login', (req, res) => {
     User.findOne({"login" : login})
         .then((user,err) => {
             if (err == null) {
-                if (user.password == password) res.sendStatus(200)
+                if (user.password == password) res.json({"code":"1"});
                 else res.sendStatus(500);
             }
             else {
